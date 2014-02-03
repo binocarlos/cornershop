@@ -1,10 +1,13 @@
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 
-function Shop(name){
+function Shop(name, autoload){
 	EventEmitter.call(this);
 	this.name = name;
 	this.items = [];
+	if(autoload){
+		this.load();
+	}
 }
 
 util.inherits(Shop, EventEmitter);

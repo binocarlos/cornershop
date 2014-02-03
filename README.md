@@ -29,9 +29,40 @@ var shop = require('cornershop');
 var cart = shop('mystoreid');
 ```
 
+### load
+
+To load the cart from localstorage either pass true as the second argument:
+
+```
+var shop = require('cornershop');
+var cart = shop('mystoreid', true);
+```
+
+or call the .load method manually:
+
+```
+var shop = require('cornershop');
+var cart = shop('mystoreid');
+cart.load();
+```
+
+### save
+
+To save the cart to localstorage call the .save() method:
+
+```
+var shop = require('cornershop');
+var cart = shop('mystoreid');
+cart.load();
+
+// do stuff
+
+cart.save();
+```
+
 ### items
 
-The cart gives access to a list of items.  An item is a plain JavaScript object with these properties:
+The cart works on a list of items.  An item is a plain JavaScript object with these properties:
 
  * id 		(10)
  * name 	(Superman Poster)
