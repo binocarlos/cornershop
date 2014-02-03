@@ -51,8 +51,8 @@ Shop.prototype.save = function(){
   }
 }
 
-module.exports = function(name){
-	return new Shop(name);
+module.exports = function(name, autoload){
+	return new Shop(name, autoload);
 }
 
 module.exports.Class = Shop;
