@@ -1,6 +1,6 @@
 {
   "name": "cornershop",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Shopping cart that saves to LocalStorage.",
   "main": "index.js",
   "scripts": {
