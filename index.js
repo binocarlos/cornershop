@@ -1,6 +1,7 @@
 function Shop(name, autoload){
 	this.name = name;
 	this.items = [];
+	this.settings = {};
 	if(autoload){
 		this.load();
 	}
@@ -37,7 +38,9 @@ Shop.prototype.load = function(){
 	var string = localStorage != null ? localStorage[this.name + "_cornershop"] : null;
 	if(string){
 		try {
-      this.items = JSON.parse(string);
+			var data = JSON.parse(string);
+      this.items = data.items;
+      this.settings = data.settings;
     }
     catch (err) {
 
@@ -47,8 +50,18 @@ Shop.prototype.load = function(){
 
 Shop.prototype.save = function(){
 	if (localStorage != null){
-    localStorage[this.name + "_cornershop"] = JSON.stringify(this.items);
+    localStorage[this.name + "_cornershop"] = JSON.stringify({
+    	items:this.items,
+    	settings:this.settings
+    })
   }
+}
+
+Shop.prototype.setting = function(name, val){
+	if(arguments.length>=2){
+		this.settings[name] = val;
+	}
+	return this.settings[name];
 }
 
 module.exports = function(name, autoload){

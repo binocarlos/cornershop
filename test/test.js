@@ -52,4 +52,13 @@ describe('CornerShop', function(){
     
   })
 
+  it('should set and get values', function(){
+
+    var cart = get_cart();
+    cart.setting('test', 10);
+    cart.setting('test').should.equal(10);
+    
+  })
+
+
 })
