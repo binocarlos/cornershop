@@ -39,8 +39,8 @@ Shop.prototype.load = function(){
 	if(string){
 		try {
 			var data = JSON.parse(string);
-      this.items = data.items;
-      this.settings = data.settings;
+      this.items = data.items || [];
+      this.settings = data.settings || {};
     }
     catch (err) {
 
