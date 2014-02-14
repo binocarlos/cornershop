@@ -48,6 +48,7 @@ Shop.prototype.load = function(){
 			var data = JSON.parse(string);
       this.items = data.items || [];
       this.settings = data.settings || {};
+      this.extra = data.extra || {};
     }
     catch (err) {
 
@@ -59,6 +60,7 @@ Shop.prototype.save = function(){
 	if (localStorage != null){
     localStorage[this.name + "_cornershop"] = JSON.stringify({
     	items:this.items,
+    	extra:this.extra,
     	settings:this.settings
     })
   }
