@@ -76,6 +76,10 @@ Shop.prototype.setExtra = function(field, obj){
 	this.extras[field] = obj;
 }
 
+Shop.prototype.getExtra = function(field){
+	return this.extras[field];
+}
+
 Shop.prototype.getExtras = function(){
 	var self = this;
 	return Object.keys(this.extras || {}).map(function(prop){
