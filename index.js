@@ -63,10 +63,6 @@ Shop.prototype.save = function(){
     	extras:this.extras,
     	settings:this.settings
     })
-
-    console.log('-------------------------------------------');
-    console.log('save');
-    console.log(localStorage[this.name + "_cornershop"]);
   }
 }
 
