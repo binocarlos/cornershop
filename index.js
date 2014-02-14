@@ -10,6 +10,13 @@ function Shop(name, autoload){
 
 module.exports = Shop;
 
+Shop.prototype.reset = function(item){
+	this.items = [];
+	this.extras = {};
+	this.settings = {};
+}
+
+
 Shop.prototype.addItem = function(item){
 	this.items.push(item);
 }
