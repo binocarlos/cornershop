@@ -1,6 +1,7 @@
 function Shop(name, autoload){
 	this.name = name;
 	this.items = [];
+	this.extras = {};
 	this.settings = {};
 	if(autoload){
 		this.load();
@@ -26,11 +27,17 @@ Shop.prototype.removeItem = function(id){
 	})
 }
 
-Shop.prototype.getTotal = function(){
+Shop.prototype.getTotal = function(plusextras){
 	var total = 0;
+	var self = this;
 	this.items.forEach(function(item){
 		total+=(item.price||0)*(item.qty||0);
 	})
+
+	if(plusextras){
+		total+=this.getExtraTotal();
+	}
+
 	return total;
 }
 
@@ -63,6 +70,34 @@ Shop.prototype.setting = function(name, val){
 	}
 	return this.settings[name];
 }
+
+Shop.prototype.setExtra = function(field, obj){
+	obj.id = field;
+	this.extras[field] = obj;
+}
+
+Shop.prototype.getExtras = function(){
+	var self = this;
+	return Object.keys(this.extras || {}).map(function(prop){
+		return self.extras[prop];
+	})
+}
+
+Shop.prototype.removeExtra = function(field, obj){
+	delete(this.extras[field]);
+}
+
+
+Shop.prototype.getExtraTotal = function(){
+	var self = this;
+	var total = 0;
+	Object.keys(this.extras).forEach(function(prop){
+		var extra = self.extras[prop];
+		total+=((extra.price || 0) * (extra.qty || 1));
+	})
+	return total;
+}
+
 
 module.exports = function(name, autoload){
 	return new Shop(name, autoload);

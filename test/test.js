@@ -60,5 +60,43 @@ describe('CornerShop', function(){
     
   })
 
+  it('should set an extra value', function(){
+
+    var cart = get_cart();
+
+    cart.setExtra('shipping', {
+      name:'Shipping',
+      price:10
+    })
+
+    var total = cart.getTotal();
+    var shippingtotal = cart.getExtraTotal();
+    var grandtotal = cart.getTotal(true);
+
+    total.should.equal(36);
+    shippingtotal.should.equal(10);
+    grandtotal.should.equal(46);
+
+  })
+
+  it('should list extra values', function(){
+
+    var cart = get_cart();
+
+    cart.setExtra('shipping', {
+      name:'Shipping',
+      price:10
+    })
+
+    cart.setExtra('giftwrap', {
+      name:'Gift Wrap',
+      price:2
+    })
+
+    var extras = cart.getExtras();
+
+    extras.length.should.equal(2);
+  })
+
 
 })
