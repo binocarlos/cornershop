@@ -56,13 +56,17 @@ Shop.prototype.load = function(){
 	}
 }
 
+Shop.prototype.toJSON = function(){
+	return {
+  	items:this.items,
+  	extras:this.extras,
+  	settings:this.settings
+  }
+}
+
 Shop.prototype.save = function(){
 	if (localStorage != null){
-    localStorage[this.name + "_cornershop"] = JSON.stringify({
-    	items:this.items,
-    	extras:this.extras,
-    	settings:this.settings
-    })
+    localStorage[this.name + "_cornershop"] = JSON.stringify(this.toJSON());
   }
 }
 
