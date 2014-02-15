@@ -115,6 +115,16 @@ Shop.prototype.getExtraTotal = function(){
 	return total;
 }
 
+Shop.prototype.qty = function(){
+	var total = 0;
+
+	this.items.forEach(function(item){
+		total += item.qty || 0;
+	})
+
+	return total;
+}
+
 
 module.exports = function(name, autoload){
 	return new Shop(name, autoload);
