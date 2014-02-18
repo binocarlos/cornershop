@@ -18,7 +18,27 @@ Shop.prototype.reset = function(item){
 
 
 Shop.prototype.addItem = function(item){
-	this.items.push(item);
+
+	if(!item){
+		return;
+	}
+
+	if(!item.qty){
+		item.qty = 1;
+	}
+	
+	var hit = null;
+
+	this.items.forEach(function(i){
+		if((i.name==item.name || i.id==item.id) && !hit){
+			hit = true;
+			i.qty += item.qty;
+		}
+	})
+
+	if(!hit){
+		this.items.push(item);	
+	}
 }
 
 Shop.prototype.getItem = function(id){

@@ -79,6 +79,22 @@ describe('CornerShop', function(){
 
   })
 
+
+  it('should inject a qty', function(){
+
+    var cart = Shop('store');
+
+    cart.addItem({
+      name:'thing'
+    })
+
+    cart.addItem({
+      name:'thing2'
+    })
+
+    cart.qty().should.equal(2);
+  })
+
   it('should list extra values', function(){
 
     var cart = get_cart();
@@ -98,5 +114,22 @@ describe('CornerShop', function(){
     extras.length.should.equal(2);
   })
 
+  it('should merge the same products qty', function(){
+
+    var cart = Shop('store');
+
+    cart.addItem({
+      name:'poster',
+      qty:2
+    })
+
+    cart.addItem({
+      name:'poster',
+      qty:1
+    })
+
+    cart.items.length.should.equal(1);
+    cart.items[0].qty.should.equal(3);
+  })
 
 })
