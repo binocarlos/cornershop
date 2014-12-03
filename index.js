@@ -1,3 +1,4 @@
+var store = require('store')
 function Shop(name, autoload){
 	this.name = name;
 	this.items = [];
@@ -69,7 +70,8 @@ Shop.prototype.getTotal = function(plusextras){
 }
 
 Shop.prototype.load = function(){
-	var string = localStorage != null ? localStorage[this.name + "_cornershop"] : null;
+	//var string = localStorage != null ? localStorage[this.name + "_cornershop"] : null;
+	var string = store.get(this.name + "_cornershop")
 	if(string){
 		try {
 			var data = JSON.parse(string);
@@ -80,6 +82,9 @@ Shop.prototype.load = function(){
     catch (err) {
 
     }
+	}
+	else{
+		// no cart data
 	}
 }
 
@@ -92,9 +97,11 @@ Shop.prototype.toJSON = function(){
 }
 
 Shop.prototype.save = function(){
+	store.set(this.name + "_cornershop", JSON.stringify(this.toJSON()))
+	/*
 	if (localStorage != null){
     localStorage[this.name + "_cornershop"] = JSON.stringify(this.toJSON());
-  }
+  }*/
 }
 
 Shop.prototype.setting = function(name, val){
