@@ -1,4 +1,4 @@
-var store = require('store')
+var store = require('./store')
 function Shop(name, autoload){
 	this.name = name;
 	this.items = [];

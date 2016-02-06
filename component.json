@@ -4,9 +4,10 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": [
-    "index.js"
+    "index.js",
+    "store.js"
   ],
   "dependencies": {
-  	"marcuswestin/store.js":"*"
+  	
   }
 }
